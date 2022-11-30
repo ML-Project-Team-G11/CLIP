@@ -234,8 +234,8 @@ class VisionTransformer(nn.Module):
 
         x = self.ln_post(x[:, 0, :])
 
-        if self.proj is not None:
-            x = x @ self.proj
+        # if self.proj is not None:
+        #     x = x @ self.proj
 
         return x
 
@@ -351,7 +351,7 @@ class CLIP(nn.Module):
 
         # x.shape = [batch_size, n_ctx, transformer.width]
         # take features from the eot embedding (eot_token is the highest number in each sequence)
-        x = x[torch.arange(x.shape[0]), text.argmax(dim=-1)] @ self.text_projection
+        x = x[torch.arange(x.shape[0]), text.argmax(dim=-1)] #@ self.text_projection
 
         return x
 
